@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Sentinel;
 use Session;
 use App\Member;
+use DB;
 use Cartalyst\Sentinel\Checkpoints\ThrottlingException;
 use Cartalyst\Sentinel\Checkpoints\NotActivatedException;
 class PagesController extends Controller
@@ -74,8 +75,9 @@ public function getLogout()
   'password'=>'required|confirmed'
     ]);
     DB::transaction(function() use($request){
+        $name=$request->fname.' '.$request->lname;
         $credentials=[
-            'name'=>$request->fname,
+            'name'=>$name,
             'email'=>$request->email,
             'password'=>$request->password,
             ];
@@ -101,7 +103,7 @@ public function getLogout()
 
 }
 
-    }
+    
     public function products(){
     	return view('products');
     }
