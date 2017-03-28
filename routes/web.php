@@ -11,6 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/','PagesController@index')->name('index');
+Route::get('/login','PagesController@login')->name('login');
+Route::post('/login','PagesController@signin')->name('signin');
+Route::get('/register','PagesController@register')->name('register');
+Route::post('/register','PagesController@create')->name('create');
+Route::get('/products','PagesController@products')->name('products');
+Route::get('/admin/signup','PagesController@signup')->name('signup');
+Route::post('/admin/signup','PagesController@adminSignup')->name('adminSignup');
+
+
